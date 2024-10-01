@@ -1,0 +1,56 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Stock/Volume by Product Over Time",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/StockVolumeByProduct.csv" 
+    },
+    "transform": [
+        {
+            "fold": [
+                "Crude oil and refinery feedstocks (ML)",
+                "LPG (ML)",
+                "Automotive gasoline (ML)",
+                "Aviation gasoline (ML)",
+                "Aviation turbine fuel (ML)",
+                "Diesel oil (ML)",
+                "Fuel oil (ML)",
+                "Other products (ML)"
+            ],
+            "as": ["Product", "Stock/Volume"]
+        },
+        {
+            "calculate": "replace(datum['Stock/Volume'], ',', '')", 
+            "as": "Stock/Volume"
+        },
+        {
+            "calculate": "toNumber(datum['Stock/Volume'])", 
+            "as": "Stock/Volume"
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "temporal", 
+            "title": "Month"
+        },
+        "y": {
+            "field": "Stock/Volume",
+            "type": "quantitative",
+            "title": "Stock/Volume (ML)"
+        },
+        "color": {
+            "field": "Product",
+            "type": "nominal",
+            "title": "Product"
+        },
+        "tooltip": [
+            {"field": "Month", "type": "temporal", "title": "Month"},
+            {"field": "Product", "type": "nominal", "title": "Product"},
+            {"field": "Stock/Volume", "type": "quantitative", "title": "Stock/Volume (ML)"}
+        ]
+    }
+}
+  
