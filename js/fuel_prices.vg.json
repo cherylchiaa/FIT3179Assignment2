@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Boxplot for fuel prices over time with a dropdown filter",
+    "description": "Boxplot for fuel prices over time",
     "title": "Fuel Prices by Year and Quarter",
     "width": 600,
     "height": 400,
@@ -19,56 +19,13 @@
           "Automotive LPG (cpl)"
         ],
         "as": ["Fuel Type", "Price (cpl)"]
-      },
-      {
-        "filter": "datum['Fuel Type'] == fuelSelection"
-      }
-    ],
-    "params": [
-      {
-        "name": "fuelSelection",
-        "value": "Premium unleaded petrol (95 RON) (cpl)", 
-        "bind": {
-          "input": "select",
-          "options": [
-            "Premium unleaded petrol (95 RON) (cpl)",
-            "Regular unleaded petrol (91 RON) (cpl)",
-            "Automotive diesel (cpl)",
-            "Automotive LPG (cpl)"
-          ],
-          "labels": [
-            "Premium Unleaded Petrol",
-            "Regular Unleaded Petrol",
-            "Automotive Diesel",
-            "Automotive LPG"
-          ],
-          "name": "Select Fuel Type: "
-        }
       }
     ],
     "mark": "boxplot",
     "encoding": {
-      "x": {
-        "field": "Year",
-        "type": "ordinal",
-        "title": "Year"
-      },
-      "y": {
-        "field": "Price (cpl)",
-        "type": "quantitative",
-        "title": "Price (cpl)"
-      },
-      "color": {
-        "field": "Fuel Type",
-        "type": "nominal",
-        "title": "Fuel Type"
-      },
-      "tooltip": [
-        {"field": "Fuel Type", "type": "nominal", "title": "Fuel Type"},
-        {"field": "Price (cpl)", "type": "quantitative", "title": "Price (cpl)"},
-        {"field": "Year", "type": "ordinal", "title": "Year"},
-        {"field": "Quarter", "type": "ordinal", "title": "Quarter"}
-      ]
+      "x": {"field": "Year", "type": "ordinal", "title": "Year"},
+      "y": {"field": "Price (cpl)", "type": "quantitative", "title": "Price (cpl)"},
+      "color": {"field": "Fuel Type", "type": "nominal", "title": "Fuel Type"}
     }
   }
   

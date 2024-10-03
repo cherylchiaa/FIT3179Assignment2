@@ -22,7 +22,7 @@
                     "lookup": "properties.name",
                     "from": {
                         "data": {
-                        "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Week9/main/data/petroleum_total_sales.csv"
+                        "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/petroleum_sales.csv"
                         },
                         "key": "State",
                         "fields": ["TotalPetroleumSales"]

@@ -29,12 +29,14 @@
             "as": "Stock/Volume"
         }
     ],
-    "mark": "line",
+    "mark": "bar",
     "encoding": {
         "x": {
             "field": "Month",
             "type": "temporal", 
-            "title": "Month"
+            "timeUnit": "yearmonth",
+            "title": "Month",
+            "axis": {"labelAngle": -45}
         },
         "y": {
             "field": "Stock/Volume",

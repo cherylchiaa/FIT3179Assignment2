@@ -1,0 +1,60 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Bump chart showing rank changes in production by region over the years.",
+    "title": "Rank of Regional Production Over Financial Years",
+    "width": 600,
+    "height": 400,
+    "data": {
+      "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/PetroleumProductionByBasin.csv", 
+      "format": {
+        "type": "csv"
+      }
+    },
+    "transform": [
+      {
+        "fold": [
+          "Amadeus / Bonaparte / Canning (ML)",
+          "Browse / Carnarvon / Perth (ML)",
+          "Gippsland / Otway / Bass (ML)",
+          "Cooper-Eromanga / Surat-Bowen (ML)"
+        ],
+        "as": ["Region", "Production"]
+      },
+      {
+        "window": [{"op": "rank", "as": "Rank"}],
+        "groupby": ["Financial Year"],
+        "sort": [{"field": "Production", "order": "descending"}]
+      }
+    ],
+    "mark": {
+      "type": "line",
+      "point": true
+    },
+    "encoding": {
+      "x": {
+        "field": "Financial Year",
+        "type": "ordinal",
+        "title": "Financial Year",
+        "axis": {
+            "labelAngle": 0 
+        }
+      },
+      "y": {
+        "field": "Rank",
+        "type": "quantitative",
+        "sort": "descending",
+        "title": "Rank"
+      },
+      "color": {
+        "field": "Region",
+        "type": "nominal",
+        "title": "Region"
+      },
+      "tooltip": [
+        {"field": "Region", "type": "nominal", "title": "Region"},
+        {"field": "Financial Year", "type": "ordinal", "title": "Financial Year"},
+        {"field": "Production", "type": "quantitative", "title": "Production (ML)"}
+      ]
+    }
+  }
+  
