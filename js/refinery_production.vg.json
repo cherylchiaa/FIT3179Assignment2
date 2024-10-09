@@ -1,51 +1,130 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Stacked area chart for refinery production over time",
-    "title": "Refinery Production (2020-2024)",
-    "width": 680,
-    "height": 400,
     "data": {
         "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/RefineryProduction.csv"
     },
-    "transform": [
+    "vconcat": [
         {
-            "fold": [
-                "LPG (ML)", 
-                "Automotive gasoline (ML)", 
-                "Aviation turbine fuel (ML)", 
-                "Diesel oil (ML)", "Fuel oil (ML)", 
-                "Other products (ML)"
+            "width": 900,
+            "height": 400,
+            "transform": [
+                {
+                    "fold": [
+                        "LPG (ML)", 
+                        "Automotive gasoline (ML)", 
+                        "Aviation turbine fuel (ML)", 
+                        "Diesel oil (ML)", "Fuel oil (ML)", 
+                        "Other products (ML)"
+                    ],
+                    "as": ["Fuel Type", "Amount (ML)"]
+                }
             ],
-            "as": ["Fuel Type", "Amount (ML)"]
-        }
-    ],
-    "mark": "area",
-    "encoding": {
-        "x": {
-            "field": "Month", 
-            "type": "temporal", 
-            "timeUnit": "yearmonth",
-            "axis": {
-                "labelAngle": -45, 
-                "title": "Month"
+            "layer": [
+                {
+                    "mark": "area",
+                    "encoding": {
+                        "x": {
+                            "field": "Month", 
+                            "type": "temporal", 
+                            "timeUnit": "yearmonth",
+                            "scale": {"domain": {"param": "brush"}},
+                            "axis": {
+                                "labelAngle": -45, 
+                                "title": "Month"
+                            }
+                        },
+                        "y": {
+                            "aggregate": "sum", 
+                            "field": "Amount (ML)", 
+                            "type": "quantitative", 
+                            "title": "Total Amount (ML)"
+                        },
+                        "color": {
+                            "field": "Fuel Type", 
+                            "type": "nominal", 
+                            "title": "Fuel Type",
+                            "scale": {
+                                "domain": [
+                                    "LPG (ML)",
+                                    "Automotive gasoline (ML)",
+                                    "Aviation turbine fuel (ML)",
+                                    "Diesel oil (ML)",
+                                    "Fuel oil (ML)",
+                                    "Other products (ML)"
+                                ],
+                                "range": [
+                                    "#ff5883",  
+                                    "#ff91ad", 
+                                    "#fec9d7", 
+                                    "#b9eee1",  
+                                    "#79d3be", 
+                                    "#39b89a"  
+                                ]
+                            }
+                        },
+                        "tooltip": [
+                            {"field": "Month", "type": "temporal", "title": "Month"},
+                            {"field": "Fuel Type", "type": "nominal", "title": "Fuel Type"},
+                            {"field": "Amount (ML)", "type": "quantitative", "title": "Amount (ML)"}
+                        ]
+                    }
+                },
+                {
+                    "mark": {"type": "text", "dx": 5, "dy": 45},
+                    "encoding": {
+                        "text": {"value": "Automotive gasoline highest production"}
+                    }
+                },
+                {
+                    "mark": {"type": "text", "dx": 5, "dy": 170},
+                    "encoding": {
+                        "text": {"value": "LPG lowest production"}
+                    }
+                }
+            ]
+        },
+        {
+            "width": 900,
+            "height": 50,
+            "transform": [
+                {
+                    "fold": [
+                        "LPG (ML)", 
+                        "Automotive gasoline (ML)", 
+                        "Aviation turbine fuel (ML)", 
+                        "Diesel oil (ML)", "Fuel oil (ML)", 
+                        "Other products (ML)"
+                    ],
+                    "as": ["Fuel Type", "Amount (ML)"]
+                }
+            ],
+            "mark": "line",
+            "params": [
+                {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+            ],
+            "encoding": {
+                "x": {
+                    "field": "Month", 
+                    "type": "temporal", 
+                    "timeUnit": "yearmonth",
+                    "axis": {
+                        "labelAngle": -45, 
+                        "title": "Month"
+                    }
+                },
+                "y": {
+                    "aggregate": "sum", 
+                    "field": "Amount (ML)", 
+                    "type": "quantitative", 
+                    "title": "Total Amount (ML)"
+                },
+                "color": {
+                    "field": "Fuel Type", 
+                    "type": "nominal", 
+                    "title": "Fuel Type"
+                }
             }
-        },
-        "y": {
-            "aggregate": "sum", 
-            "field": "Amount (ML)", 
-            "type": "quantitative", 
-            "title": "Total Amount (ML)"
-        },
-        "color": {
-            "field": "Fuel Type", 
-            "type": "nominal", 
-            "title": "Fuel Type"
-        },
-        "tooltip": [
-            {"field": "Month", "type": "temporal", "title": "Month"},
-            {"field": "Fuel Type", "type": "nominal", "title": "Fuel Type"},
-            {"field": "Amount (ML)", "type": "quantitative", "title": "Amount (ML)"}
-        ]
-    }
+        }
+    ]
 }
   

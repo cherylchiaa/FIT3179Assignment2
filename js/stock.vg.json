@@ -1,58 +1,85 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Stock/Volume by Product Over Time",
     "width": 600,
     "height": 400,
     "data": {
-        "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/StockVolumeByProduct.csv" 
+      "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/StockVolumeByProduct.csv"
     },
     "transform": [
+      {
+        "fold": [
+          "LPG (ML)",
+          "Automotive gasoline (ML)",
+          "Aviation turbine fuel (ML)",
+          "Diesel oil (ML)",
+          "Fuel oil (ML)",
+          "Other products (ML)"
+        ],
+        "as": ["Product", "Stock/Volume"]
+      },
+      {
+        "calculate": "replace(datum['Stock/Volume'], ',', '')",
+        "as": "Stock/Volume"
+      },
+      {
+        "calculate": "toNumber(datum['Stock/Volume'])",
+        "as": "Stock/Volume"
+      }
+    ],
+    "params": [
         {
-            "fold": [
-                "Crude oil and refinery feedstocks (ML)",
-                "LPG (ML)",
-                "Automotive gasoline (ML)",
-                "Aviation gasoline (ML)",
-                "Aviation turbine fuel (ML)",
-                "Diesel oil (ML)",
-                "Fuel oil (ML)",
-                "Other products (ML)"
-            ],
-            "as": ["Product", "Stock/Volume"]
-        },
-        {
-            "calculate": "replace(datum['Stock/Volume'], ',', '')", 
-            "as": "Stock/Volume"
-        },
-        {
-            "calculate": "toNumber(datum['Stock/Volume'])", 
-            "as": "Stock/Volume"
+            "name": "ProductSelection",
+            "select": {"type": "point", "fields": ["Product"]},
+            "bind": "legend"
         }
     ],
     "mark": "bar",
     "encoding": {
-        "x": {
-            "field": "Month",
-            "type": "temporal", 
-            "timeUnit": "yearmonth",
-            "title": "Month",
-            "axis": {"labelAngle": -45}
+      "x": {
+        "field": "Month",
+        "type": "temporal",
+        "timeUnit": "yearmonth",
+        "title": "Month",
+        "axis": {"labelAngle": -45}
+      },
+      "y": {
+        "field": "Stock/Volume",
+        "type": "quantitative",
+        "title": "Stock/Volume (ML)"
+      },
+      "color": {
+        "field": "Product",
+        "type": "nominal",
+        "title": "Product",
+        "scale": {
+          "domain": [
+            "LPG (ML)",
+            "Automotive gasoline (ML)",
+            "Aviation turbine fuel (ML)",
+            "Diesel oil (ML)",
+            "Fuel oil (ML)",
+            "Other products (ML)"
+          ],
+          "range": [
+            "#ff5883",  
+            "#ff91ad", 
+            "#fec9d7", 
+            "#b9eee1",  
+            "#79d3be", 
+            "#39b89a"  
+          ]
         },
-        "y": {
-            "field": "Stock/Volume",
-            "type": "quantitative",
-            "title": "Stock/Volume (ML)"
-        },
-        "color": {
-            "field": "Product",
-            "type": "nominal",
-            "title": "Product"
-        },
-        "tooltip": [
-            {"field": "Month", "type": "temporal", "title": "Month"},
-            {"field": "Product", "type": "nominal", "title": "Product"},
-            {"field": "Stock/Volume", "type": "quantitative", "title": "Stock/Volume (ML)"}
-        ]
+        "legend": {"orient": "right"}
+      },
+      "opacity": {
+        "condition": {"param": "ProductSelection", "value": 1},
+        "value": 0.2
+      },
+      "tooltip": [
+        {"field": "Month", "type": "temporal", "title": "Month"},
+        {"field": "Product", "type": "nominal", "title": "Product"},
+        {"field": "Stock/Volume", "type": "quantitative", "title": "Stock/Volume (ML)"}
+      ]
     }
-}
+  }
   

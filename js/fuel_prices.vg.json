@@ -1,14 +1,10 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Boxplot for fuel prices over time",
-    "title": "Fuel Prices by Year and Quarter",
-    "width": 600,
-    "height": 400,
+    "width": 150,
+    "height": 150,
     "data": {
       "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/AustralianFuelPrices.csv",
-      "format": {
-        "type": "csv"
-      }
+      "format": {"type": "csv"}
     },
     "transform": [
       {
@@ -20,12 +16,45 @@
         ],
         "as": ["Fuel Type", "Price (cpl)"]
       }
-    ],
-    "mark": "boxplot",
+    ], 
+    "mark": "rect",
     "encoding": {
-      "x": {"field": "Year", "type": "ordinal", "title": "Year"},
-      "y": {"field": "Price (cpl)", "type": "quantitative", "title": "Price (cpl)"},
-      "color": {"field": "Fuel Type", "type": "nominal", "title": "Fuel Type"}
+        "facet": {
+            "field": "Fuel Type",
+            "type": "nominal",
+            "columns": 4,
+            "title": "Fuel Type",
+            "spacing": 5
+        },
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {"labelAngle": 0}
+        },
+        "y": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "title": "Quarter"
+        },
+        "color": {
+            "field": "Price (cpl)",
+            "type": "quantitative",
+            "title": "Price (cpl)",
+            "scale": {"scheme": "teals"}
+        },
+        "tooltip": [
+            {"field": "Year", "type": "ordinal", "title": "Year"},
+            {"field": "Quarter", "type": "ordinal", "title": "Quarter"},
+            {"field": "Fuel Type", "type": "nominal", "title": "Fuel Type"},
+            {"field": "Price (cpl)", "type": "quantitative", "title": "Price (cpl)"}
+        ]
+    },
+    "config": {
+      "axis": {
+        "labelFontSize": 10,
+        "titleFontSize": 12
+      }
     }
   }
   
