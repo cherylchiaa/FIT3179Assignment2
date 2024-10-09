@@ -1,8 +1,8 @@
-﻿State,TotalPetroleumSales
-Western Australia,7907.6
-Northern Territory,412.1
-South Australia,4766.4
-Queensland,15127.9
-Tasmania,1504.1
-Victoria,18721.3
-New South Wales,22113.8
+﻿State,TotalPetroleumSales,SalesByArea
+Western Australia,7907.6,0.00312923
+Northern Territory,412.1,0.00030576
+South Australia,4766.4,0.00484232
+Queensland,15127.9,0.00874576
+Tasmania,1504.1,0.0219894
+Victoria,18721.3,0.0823117
+New South Wales,22113.8,0.0276026
