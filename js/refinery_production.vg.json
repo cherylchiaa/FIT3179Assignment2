@@ -70,13 +70,13 @@
                     }
                 },
                 {
-                    "mark": {"type": "text", "dx": 5, "dy": 45},
+                    "mark": {"type": "text", "dx": 5, "dy": 45, "fontSize": 15, "fontStyle": "italic"},
                     "encoding": {
                         "text": {"value": "Automotive gasoline highest production"}
                     }
                 },
                 {
-                    "mark": {"type": "text", "dx": 5, "dy": 170},
+                    "mark": {"type": "text", "dx": 5, "dy": 170, "fontSize": 15, "fontStyle": "italic"},
                     "encoding": {
                         "text": {"value": "LPG lowest production"}
                     }
