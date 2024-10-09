@@ -26,17 +26,34 @@
                         "key": "State",
                         "fields": ["TotalPetroleumSales"]
                     }
+                },
+                {
+                    "lookup": "properties.name",
+                    "from": {
+                      "data": {
+                        "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/petroleum_sales.csv"
+                      },
+                      "key": "State",
+                      "fields": ["Area"]
+                    }
+                },
+                {
+                    "calculate": "datum.TotalPetroleumSales / datum.Area",
+                    "as": "SalesPerArea"
                 }
             ],
             "mark": {"type": "geoshape", "stroke": "white"},
             "encoding": {
                 "color": {
-                    "field": "TotalPetroleumSales",
-                    "type": "quantitative"
+                    "field": "SalesPerArea",
+                    "type": "quantitative",
+                    "scale": {"domain": [0, 1], "range": ["lightblue", "darkgreen"]}
                 },
                 "tooltip": [
                     {"field": "properties.name", "type": "nominal", "title": "State"},
-                    {"field": "TotalPetroleumSales", "type": "quantitative"}
+                    {"field": "TotalPetroleumSales", "type": "quantitative"},
+                    {"field": "StateArea", "type": "quantitative", "title": "State Area (sq km)"},
+                    {"field": "SalesPerArea", "type": "quantitative", "title": "Sales per Area"}
                 ]
             }
         },
