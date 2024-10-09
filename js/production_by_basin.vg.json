@@ -88,37 +88,28 @@
             }
         },
         {
-            "mark": {"type": "text", "dx": -50, "dy": -130},
+            "mark": {"type": "text", "dx": 150, "dy": 130, "fontSize": 12, "color": "#ff748c"},
             "encoding": {
-                "text": {"value": "Browse / Carnarvon / Perth (ML) consistently holds the top rank throughout all financial years"}
+                "text": {"value": "Amadeus / Bonaparte / Canning (ML)"}
             }
         },
         {
-            "mark": {
-              "type": "text",
-              "align": "left",
-              "dx": 8,
-              "dy": 0,
-              "fontSize": 12,  
-              "fontWeight": "bold"
-            },
+            "mark": {"type": "text", "dx": 160, "dy": -130, "fontSize": 12, "color": "#ffd1b3"},
             "encoding": {
-              "x": {
-                "field": "Financial Year",
-                "type": "ordinal"
-              },
-              "y": {"field": "Rank", "type": "quantitative"},
-              "text": {"field": "Region"},
-              "color": {"field": "Region", "type": "nominal"},
-              "tooltip": [
-                {"field": "Region", "type": "nominal", "title": "Region"}
-              ]
-            },
-            "transform": [
-              {
-                "filter": "datum['Financial Year'] == '2021/22'"
-              }
-            ]
+                "text": {"value": "Browse / Carnarvon / Perth (ML)"}
+            }
+        },
+        {
+            "mark": {"type": "text", "dx": -180, "dy": -30, "fontSize": 12, "color": "#a4d8e4"},
+            "encoding": {
+                "text": {"value": "Gippsland / Otway / Bass (ML)"}
+            }
+        },
+        {
+            "mark": {"type": "text", "dx": -10, "dy": 70, "fontSize": 12, "color": "#a1e8dc"},
+            "encoding": {
+                "text": {"value": "Cooper-Eromanga / Surat-Bowen (ML)"}
+            }
         }
     ],
     "config": {
