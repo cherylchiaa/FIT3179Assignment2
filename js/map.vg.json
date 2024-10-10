@@ -2,6 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 500,
     "height": 400,
+    "background": "#f5f5f5",
     "data": {
         "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/js/ne.json",
         "format": {"type": "topojson", "feature": "ne_50m_admin_1_states_provinces"}
@@ -21,7 +22,7 @@
                     "lookup": "properties.name",
                     "from": {
                         "data": {
-                            "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/petroleum_sales.csv"
+                            "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/PetroleumSales.csv"
                         },
                         "key": "State",
                         "fields": ["TotalPetroleumSales"]
@@ -31,7 +32,7 @@
                     "lookup": "properties.name",
                     "from": {
                       "data": {
-                        "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/petroleum_sales.csv"
+                        "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/PetroleumSales.csv"
                       },
                       "key": "State",
                       "fields": ["Area"]
@@ -45,14 +46,29 @@
             "mark": {"type": "geoshape", "stroke": "white"},
             "encoding": {
                 "color": {
+                    "bin": {
+                        "binned": true,
+                        "step": 20000,
+                        "extent": [0, 100000]
+                    },
                     "field": "SalesPerArea",
                     "type": "quantitative",
-                    "scale": {"domain": [0, 1], "range": ["lightblue", "darkgreen"]}
+                    "scale": {
+                        "type": "threshold",
+                        "domain": [0, 20000, 40000, 60000, 80000],
+                        "scheme": "lighttealblue"
+                    },
+                    "legend": {
+                        "title": "Sales per Area",
+                        "orient": "right",
+                        "labelExpr": "datum.value + '-' + (datum.value + 20000)",
+                        "labelAlign": "left"
+                    }
                 },
                 "tooltip": [
                     {"field": "properties.name", "type": "nominal", "title": "State"},
                     {"field": "TotalPetroleumSales", "type": "quantitative"},
-                    {"field": "StateArea", "type": "quantitative", "title": "State Area (sq km)"},
+                    {"field": "Area", "type": "quantitative", "title": "State Area (sq km)"},
                     {"field": "SalesPerArea", "type": "quantitative", "title": "Sales per Area"}
                 ]
             }

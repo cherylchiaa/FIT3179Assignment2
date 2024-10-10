@@ -1,7 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 580,
+    "width": 630,
     "height": 300,
+    "background": "#f5f5f5",
     "data": {
       "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/PetroleumProductionByBasin.csv", 
       "format": {
@@ -88,25 +89,25 @@
             }
         },
         {
-            "mark": {"type": "text", "dx": 150, "dy": 130, "fontSize": 12, "color": "#ff748c"},
+            "mark": {"type": "text", "dx": 150, "dy": 130, "fontSize": 13, "color": "#ff748c"},
             "encoding": {
                 "text": {"value": "Amadeus / Bonaparte / Canning (ML)"}
             }
         },
         {
-            "mark": {"type": "text", "dx": 160, "dy": -130, "fontSize": 12, "color": "#ffd1b3"},
+            "mark": {"type": "text", "dx": 160, "dy": -130, "fontSize": 13, "color": "#ffd1b3"},
             "encoding": {
                 "text": {"value": "Browse / Carnarvon / Perth (ML)"}
             }
         },
         {
-            "mark": {"type": "text", "dx": -180, "dy": -30, "fontSize": 12, "color": "#a4d8e4"},
+            "mark": {"type": "text", "dx": -180, "dy": -30, "fontSize": 13, "color": "#a4d8e4"},
             "encoding": {
                 "text": {"value": "Gippsland / Otway / Bass (ML)"}
             }
         },
         {
-            "mark": {"type": "text", "dx": -10, "dy": 70, "fontSize": 12, "color": "#a1e8dc"},
+            "mark": {"type": "text", "dx": -10, "dy": 70, "fontSize": 13, "color": "#a1e8dc"},
             "encoding": {
                 "text": {"value": "Cooper-Eromanga / Surat-Bowen (ML)"}
             }

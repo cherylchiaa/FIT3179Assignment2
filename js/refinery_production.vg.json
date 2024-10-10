@@ -1,11 +1,12 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": "#f5f5f5",
     "data": {
         "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/RefineryProduction.csv"
     },
     "vconcat": [
         {
-            "width": 900,
+            "width": 850,
             "height": 400,
             "transform": [
                 {
@@ -84,7 +85,7 @@
             ]
         },
         {
-            "width": 900,
+            "width": 850,
             "height": 50,
             "transform": [
                 {
