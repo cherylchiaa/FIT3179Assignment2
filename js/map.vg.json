@@ -29,47 +29,38 @@
                     }
                 },
                 {
-                    "lookup": "properties.name",
-                    "from": {
-                      "data": {
-                        "url": "https://raw.githubusercontent.com/cherylchiaa/FIT3179Assignment2/refs/heads/main/data/PetroleumSales.csv"
-                      },
-                      "key": "State",
-                      "fields": ["Area"]
-                    }
+                    "aggregate": [
+                        {
+                            "op": "sum",
+                            "field": "TotalPetroleumSales",
+                            "as": "TotalSales"
+                        }
+                    ],
+                    "groupby": [] 
                 },
                 {
-                    "calculate": "datum.TotalPetroleumSales / datum.Area",
-                    "as": "SalesPerArea"
+                    "calculate": "datum.TotalPetroleumSales / datum.TotalSales",
+                    "as": "ProportionSales"
                 }
             ],
             "mark": {"type": "geoshape", "stroke": "white"},
             "encoding": {
                 "color": {
-                    "bin": {
-                        "binned": true,
-                        "step": 20000,
-                        "extent": [0, 100000]
-                    },
-                    "field": "SalesPerArea",
+                    "field": "ProportionSales",
                     "type": "quantitative",
                     "scale": {
-                        "type": "threshold",
-                        "domain": [0, 20000, 40000, 60000, 80000],
-                        "scheme": "lighttealblue"
+                        "domain": [0, 1],
+                        "range": ["lightblue", "darkblue"]
                     },
                     "legend": {
-                        "title": "Sales per Area",
-                        "orient": "right",
-                        "labelExpr": "datum.value + '-' + (datum.value + 20000)",
-                        "labelAlign": "left"
+                        "title": "Proportion of Total Sales",
+                        "format": ".0%"
                     }
                 },
                 "tooltip": [
                     {"field": "properties.name", "type": "nominal", "title": "State"},
                     {"field": "TotalPetroleumSales", "type": "quantitative"},
-                    {"field": "Area", "type": "quantitative", "title": "State Area (sq km)"},
-                    {"field": "SalesPerArea", "type": "quantitative", "title": "Sales per Area"}
+                    {"field": "ProportionSales", "type": "quantitative", "title": "Proportion of Total Sales", "format": ".2%"}                
                 ]
             }
         },
