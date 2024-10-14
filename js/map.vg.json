@@ -29,17 +29,7 @@
                     }
                 },
                 {
-                    "aggregate": [
-                        {
-                            "op": "sum",
-                            "field": "TotalPetroleumSales",
-                            "as": "TotalSales"
-                        }
-                    ],
-                    "groupby": [] 
-                },
-                {
-                    "calculate": "datum.TotalPetroleumSales / datum.TotalSales",
+                    "calculate": "datum.TotalPetroleumSales / 70553.2",
                     "as": "ProportionSales"
                 }
             ],
@@ -49,8 +39,9 @@
                     "field": "ProportionSales",
                     "type": "quantitative",
                     "scale": {
-                        "domain": [0, 1],
-                        "range": ["lightblue", "darkblue"]
+                        "type": "threshold",
+                        "domain": [0.2, 0.4, 0.6, 0.8],
+                        "scheme": "lighttealblue"
                     },
                     "legend": {
                         "title": "Proportion of Total Sales",
